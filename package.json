@@ -4,8 +4,10 @@
   "description": "bcoin full node in a mobile browser",
   "main": "index.html",
   "dependencies": {
-    "bval": "^0.1.5",
     "bfile": "^0.1.4",
+    "binet": "^0.3.4",
+    "bsock": "^0.1.5",
+    "bval": "^0.1.5",
     "bweb": "^0.1.7"
   },
   "devDependencies": {},

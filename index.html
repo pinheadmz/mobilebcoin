@@ -30,12 +30,9 @@
       <div class="tab-pane fade" id="wallet" role="tabpanel" aria-labelledby="contact-tab"></div>
     </div>
 
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 
     <script type="text/javascript" src="bcoin.js"></script>
     <script type="text/javascript" src="proxysocket.js"></script>
@@ -58,17 +55,23 @@ logger.writeConsole = function writeConsole(level, module, args) {
     log.firstElementChild.remove();
 };
 
+// OPTIONAL: This can be switched to `BCOIN.SPVNode`
 const node = new BCOIN.FullNode({
-  hash: true,
-  query: true,
   prune: true,
   network: 'main',
   memory: false,
   coinCache: 30,
-  logConsole: true,
-  workers: true,
   checkpoints: true,
   createSocket: (port, host) => {
+    /* OPTIONAL: This can be set to local proxy server, which can be run
+     * from the command line, inside this repo: `node server.js`
+     * then navigate the browser to `127.0.0.1:8080`
+     */
+    
+    // const proto = document.location.protocol === 'https:' ? 'wss' : 'ws';
+    // const hostname = document.location.host;
+    // return PROXYSOCKET.connect(`${proto}://${hostname}`, port, host);
+     
     return PROXYSOCKET.connect(`wss://browser.c4yt.io`, port, host);
   },
   logger: logger,
@@ -143,9 +146,6 @@ async function getWallet() {
 
   html += `Current Address: <br><b>${raddr}</b><br><br>`;
 
-  // html += `Extended Private Key: <b>${key.xprivkey}</b><br>`;
-  // html += `Mnemonic: <b>${mnemonic.phrase}</b><br>`;
-
   const balance = await wallet.getBalance();
 
   html += `Confirmed Balance: <b>${balance.confirmed}</b><br>`;
@@ -153,16 +153,6 @@ async function getWallet() {
 
   const txs = await wallet.getHistory();
   const det = await wallet.toDetails(txs);
-
-  // html += 'TXs:\n';
-  // wdiv.innerHTML = html;
-
-  // for (const tx of det) {
-  //   const hash = util.revHex(tx.hash);
-  //   const el = create(
-  //     `<a style="display:block;" href="#${hash}">${hash}</a>`);
-  //   wdiv.appendChild(el);
-  //   setMouseup(el, tx.toJSON());
 
   const walletTab = document.getElementById('wallet');
   walletTab.innerHTML = html;
