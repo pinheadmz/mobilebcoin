@@ -1,5 +1,7 @@
 ## Run a bcoin node in a web browser
 
+![screenshot](https://raw.githubusercontent.com/pinheadmz/mobilebcoin/master/demo.gif "demo")
+
 This repository is a work-in-progress update to the the bcoin browser full node
 example described at [https://bcoin.io/guides/browser](https://bcoin.io/guides/browser)
 and implemented at [https://bcoin.io/browser](https://bcoin.io/browser).
