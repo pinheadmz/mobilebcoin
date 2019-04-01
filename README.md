@@ -24,6 +24,8 @@ building webapps with bcoin.](https://bcoin.io/guides/webapp.html)
 
 [proxysocket.js](https://github.com/bcoin-org/bcoin/blob/master/browser/src/proxysocket.js)
 
+[worker.js](https://github.com/bcoin-org/bcoin/blob/master/lib/workers/worker.js)
+
 [bcoin.js](https://github.com/bcoin-org/bcoin/blob/master/lib/bcoin.js) (This is
 the main entry point for the entire bcoin library, including all objects and primitives)
 

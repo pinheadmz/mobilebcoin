@@ -62,8 +62,11 @@ const node = new BCOIN.FullNode({
   memory: false,
   coinCache: 30,
   checkpoints: true,
+  workers: true,
+  workerFile: 'worker.js',
   createSocket: (port, host) => {
-    /* OPTIONAL: This can be set to local proxy server, which can be run
+    /***
+     * OPTIONAL: This can be set to local proxy server, which can be run
      * from the command line, inside this repo: `node server.js`
      * then navigate the browser to `127.0.0.1:8080`
      */
