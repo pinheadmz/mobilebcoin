@@ -29,6 +29,13 @@ building webapps with bcoin.](https://bcoin.io/guides/webapp.html)
 [bcoin.js](https://github.com/bcoin-org/bcoin/blob/master/lib/bcoin.js) (This is
 the main entry point for the entire bcoin library, including all objects and primitives)
 
+bcoin is compiled with this command:
+
+```
+cd <bcoin repo root directory>
+bpkg --browser --standalone --plugin [ uglify-es --toplevel ] --name BCOIN --output <path to this repo>/bcoin.js lib/bcoin.js
+```
+
 #### Shiny and new
 index.html
 
